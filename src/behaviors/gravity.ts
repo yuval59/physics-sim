@@ -5,10 +5,11 @@ import Behavior from './behavior'
 export default class Gravity extends Behavior {
   #force: Vec2D
 
-  constructor(direction: Vec2D) {
+  constructor(force: Vec2D) {
     super()
-    this.#force = direction
+    this.#force = force
   }
 
-  onTick = (actor: Actor) => actor.incrementPosition(this.#force)
+  onTick = (...actors: Actor[]) =>
+    actors.forEach((actor) => actor.incrementPosition(this.#force))
 }
