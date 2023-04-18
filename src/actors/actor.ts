@@ -23,4 +23,8 @@ export default abstract class Actor {
   addBehavior = (behavior: Behavior) => this.#behaviors.push(behavior)
 
   onTick = () => this.#behaviors.forEach((behavior) => behavior.onTick(this))
+
+  static distance(actorA: Actor, actorB: Actor) {
+    return Vec2D.distance(actorA.Position, actorB.Position)
+  }
 }

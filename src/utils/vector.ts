@@ -32,4 +32,11 @@ export default class Vec2D {
   static isVector(something: unknown): something is Vec2D {
     return something instanceof Vec2D ? true : false
   }
+
+  static distance(vectorA: Vec2D, vectorB: Vec2D) {
+    const xDist = vectorA.x - vectorB.x
+    const yDist = vectorA.y - vectorB.y
+
+    return Math.sqrt(xDist * xDist + yDist * yDist)
+  }
 }

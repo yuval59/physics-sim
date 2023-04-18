@@ -9,11 +9,9 @@ const borders = new Border(new Vec2D(0, 100), new Vec2D(0, 100))
 const gravity = new Gravity(new Vec2D(0, 1))
 const pawn = new Point(new Vec2D(100, 100))
 
-// pawn.addBehavior()
-
 sim.addActor(pawn)
 sim.addGlobalBehavior(borders)
-sim.addGlobalBehavior(gravity)
+// sim.addGlobalBehavior(gravity)
 
 console.log(pawn.Position.Values)
 sim.onTick()
