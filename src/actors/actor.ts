@@ -20,7 +20,9 @@ export default abstract class Actor {
     this.#pos = newPos
   }
 
-  addBehavior = (behavior: Behavior) => this.#behaviors.push(behavior)
+  addBehavior = (behavior: Behavior) => {
+    this.#behaviors.push(behavior)
+  }
 
   onTick = () => this.#behaviors.forEach((behavior) => behavior.onTick(this))
 
