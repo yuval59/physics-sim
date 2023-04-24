@@ -1,23 +1,12 @@
-import Point from './actors/point'
-import Border from './behaviors/border'
-import Gravity from './behaviors/gravity'
-import Physics from './physics'
+import Point from './physics/actors/point'
+import Gravity from './physics/behaviors/gravity'
+import Physics from './physics/physics'
+import { getScreenHardCaps } from './physics/utils'
 import Vec2D from './utils/vector'
 
 const sim = new Physics()
-const borders = new Border(new Vec2D(0, 100), new Vec2D(0, 100))
-const gravity = new Gravity(new Vec2D(0, 1))
-const pawn = new Point(new Vec2D(100, 100))
+sim.addHardCaps(...getScreenHardCaps(500, 500))
+sim.addBehaviors(new Gravity(new Vec2D(0, 1)))
+sim.addActors(new Point(new Vec2D(100, 100)))
 
-sim.addActor(pawn)
-sim.addGlobalBehavior(borders)
-// sim.addGlobalBehavior(gravity)
-
-console.log(pawn.Position.Values)
-sim.onTick()
-console.log(pawn.Position.Values)
-sim.onTick()
-console.log(pawn.Position.Values)
-sim.onTick()
-console.log(pawn.Position.Values)
-sim.onTick()
+setInterval(sim.onTick, 500)

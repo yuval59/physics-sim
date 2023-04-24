@@ -11,18 +11,31 @@ export default class Vec2D {
     return this.#x
   }
 
+  set x(value: number) {
+    this.#x = value
+  }
+
   get y() {
     return this.#y
   }
 
-  get Values() {
+  set y(value: number) {
+    this.#y = value
+  }
+
+  get values() {
     return [this.#x, this.#y]
   }
 
   add = (vecToAdd: Vec2D) => {
-    const [x, y] = Vec2D.add(this, vecToAdd).Values
+    const [x, y] = Vec2D.add(this, vecToAdd).values
     this.#x = x
     this.#y = y
+  }
+
+  isEqual = (vector: Vec2D) => {
+    if (vector.x != this.#x || vector.y != this.#y) return false
+    return true
   }
 
   static add(vecA: Vec2D, vecB: Vec2D) {
