@@ -1,14 +1,13 @@
 # TODO:
 
-- [ ] Finish writing up [springs](src/constraints/spring.ts).
+- [ ] Create [constraints abstract](src/physics/constraints/constraint.ts).
+- [ ] Implement [springs](src/physics/constraints/spring.ts).
 
   - [ ] Get direction between vectors.
-  - [ ] Create vector with magnitude in direction.
+  - [ ] Write [Vec2D](src/utils/vector.ts) method to create a vector with magnitude in direction.
   - [ ] Apply forces to actors assigned to spring.
-  - [ ] Different constructor overload?  
-         Rethink this, mark as completed if decided against.
 
-- [ ] Better differentiation for [_behaviors_](src/behaviors/) and [_constraints_](src/constraints/).
+- [x] Better differentiation for [_behaviors_](src/physics/behaviors/) and [_constraints_](src/physics/constraints/).
 
 - [ ] Add hard springs (spring only below/above a threshold).
 
