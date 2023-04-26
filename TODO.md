@@ -1,11 +1,11 @@
 # TODO:
 
-- [ ] Create [constraints abstract](src/physics/constraints/constraint.ts).
-- [ ] Implement [springs](src/physics/constraints/spring.ts).
+- [x] Create [constraints abstract](src/physics/constraints/constraint.ts).
+- [x] Implement [springs](src/physics/constraints/spring.ts).
 
-  - [ ] Get direction between vectors.
-  - [ ] Write [Vec2D](src/utils/vector.ts) method to create a vector with magnitude in direction.
-  - [ ] Apply forces to actors assigned to spring.
+  - [x] Get direction between vectors.
+  - [x] Write [Vec2D](src/utils/vector.ts) method to create a vector with magnitude in direction.
+  - [x] Apply forces to actors assigned to spring.
 
 - [x] Better differentiation for [_behaviors_](src/physics/behaviors/) and [_constraints_](src/physics/constraints/).
 
