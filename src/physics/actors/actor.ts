@@ -41,6 +41,13 @@ export default abstract class Actor {
     this.#velocity.add(force)
   }
 
+  applyForceInDirection = (force: number, angle: number) => {
+    if (this.#stationary) return
+    this.velocity.add(
+      new Vec2D(Math.cos(angle) * force, Math.sin(angle) * force)
+    )
+  }
+
   addHardCaps = (...caps: ActorHardCap[]) => {
     this.#hardCaps.push(...caps)
   }
@@ -72,5 +79,15 @@ export default abstract class Actor {
         }
       }
     }
+  }
+
+  static distance(actorA: Actor, actorB: Actor) {
+    return Vec2D.distance(actorA.position, actorB.position)
+  }
+
+  static GetAngleTo(from: Actor, to: Actor) {
+    const yDiff = from.position.y - to.position.y
+    const xDiff = from.position.x - to.position.x
+    return Math.atan2(yDiff, xDiff)
   }
 }
