@@ -33,6 +33,11 @@ export default class Vec2D {
     this.#y = y
   }
 
+  multiply = (scalar: number) => {
+    this.#x *= scalar
+    this.#y *= scalar
+  }
+
   isEqual = (vector: Vec2D) => {
     if (vector.x != this.#x || vector.y != this.#y) return false
     return true

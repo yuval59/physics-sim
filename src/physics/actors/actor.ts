@@ -5,6 +5,7 @@ export type ActorOptionalConstructorParams = {
   velocity?: Vec2D
   hardCaps?: ActorHardCap[]
   isStationary?: boolean
+  airResistance?: number
 }
 
 export type ActorHardCap = {
@@ -16,6 +17,7 @@ export type ActorHardCap = {
 export default abstract class Actor {
   abstract checkForCollision(point: Vec2D): boolean
 
+  #airResistance: number = 0
   #position: Vec2D
   #stationary: boolean = false
   #velocity: Vec2D = new Vec2D(0, 0)
@@ -26,6 +28,11 @@ export default abstract class Actor {
     this.#position = pos
     if (options?.velocity) this.#velocity = options.velocity
     if (options?.isStationary) this.#stationary = true
+    if (options?.airResistance) this.#airResistance = options.airResistance
+  }
+
+  get stationary() {
+    return this.#stationary
   }
 
   get position() {
@@ -36,6 +43,14 @@ export default abstract class Actor {
     return this.#velocity
   }
 
+  get airResistance() {
+    return this.#airResistance
+  }
+
+  set airResistance(value: number) {
+    this.#airResistance = value
+  }
+
   applyForce = (force: Vec2D) => {
     if (this.#stationary) return
     this.#velocity.add(force)
@@ -43,7 +58,7 @@ export default abstract class Actor {
 
   applyForceInDirection = (force: number, angle: number) => {
     if (this.#stationary) return
-    this.velocity.add(
+    this.#velocity.add(
       new Vec2D(Math.cos(angle) * force, Math.sin(angle) * force)
     )
   }
@@ -60,6 +75,8 @@ export default abstract class Actor {
     for (const { force } of this.#behaviors) this.applyForce(force)
 
     this.#position.add(this.#velocity)
+
+    this.#velocity.multiply(1 - this.#airResistance)
 
     for (const { axis, higher, cap } of this.#hardCaps) {
       const [x, y] = this.#position.values

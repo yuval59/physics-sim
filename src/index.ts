@@ -5,12 +5,12 @@ import Physics from './physics/physics'
 import { getScreenHardCaps } from './physics/utils'
 import Vec2D from './utils/vector'
 
-const sim = new Physics()
+const sim = new Physics(0.05)
 sim.addHardCaps(...getScreenHardCaps(500, 500))
-const gravity = new Gravity(new Vec2D(0, 1))
-sim.addBehaviors(gravity)
+// const gravity = new Gravity(new Vec2D(0, 1))
+// sim.addBehaviors(gravity)
 const pointA = new Point(new Vec2D(100, 100), { isStationary: true })
-const pointB = new Point(new Vec2D(100, 150))
+const pointB = new Point(new Vec2D(100, 199))
 sim.addActors(pointA, pointB)
 const spring = new Spring({
   restingLength: 100,
